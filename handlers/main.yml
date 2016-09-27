@@ -1,0 +1,4 @@
+---
+# handlers file for adduser
+- name: compile nis
+  command: make -C /var/yp

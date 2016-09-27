@@ -1,0 +1,21 @@
+---
+# tasks file for adduser
+- name: Load user variables
+  include_vars: users.yml
+
+- name: Update group database
+  group:
+    name: "{{ item.name }}"
+    state: present
+  with_items: "{{ system_groups }}"
+
+- name: Update HPC user database
+  user: 
+    name: "{{ item.name }}"
+    group: "{{ item.group }}"
+    append: yes 
+    home: /users/mcarlise
+    createhome: no
+    comment: "Michael Carlise -- (Carlise Group mcarlise@mix.wvu.edu)"
+    state: present
+  with_items: "{{ system_users }}"

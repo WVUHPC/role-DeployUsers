@@ -1,0 +1,11 @@
+---
+# vars file for adduser
+system_users:
+    - name: mcarlise
+      group: mcarlise
+    - name: another_user
+      group: another_group
+
+system_groups:
+    - name: mcarlise
+    - name: another_group

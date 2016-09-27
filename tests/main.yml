@@ -1,0 +1,10 @@
+---
+- hosts: docker-hosts
+  roles:
+  - adduser
+
+  tasks:
+  - name: Test that user mcarlise exist on docker host
+    command: getent passwd mcarlise
+    register: test_result
+    failed_when: "test_result.rc != 0"
