@@ -1,12 +1,15 @@
 ---
 # tasks file for adduser
 - name: Load user variables
-  include_vars: users.yml
+  include_vars: "{{ user_database }}"
+
+- name: Load group variables
+  include_vars: "{{ group_database }}"
 
 - name: Update group database
   group:
     name: "{{ item.name }}"
-    state: present
+    state: "{{ item.state }}"
   with_items: "{{ system_groups }}"
 
 - name: Update HPC user database
@@ -14,8 +17,8 @@
     name: "{{ item.name }}"
     group: "{{ item.group }}"
     append: yes 
-    home: /users/mcarlise
+    home: "/users/{{ item.name }}"
     createhome: no
-    comment: "Michael Carlise -- (Carlise Group mcarlise@mix.wvu.edu)"
-    state: present
+    comment: "{{item.fullname}} ({{item.email}}) -- {{item.comment}}"
+    state: "{{ item.state }}"
   with_items: "{{ system_users }}"

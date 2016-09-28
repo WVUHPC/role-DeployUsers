@@ -1,11 +1,15 @@
 ---
 # vars file for adduser
 system_users:
-    - name: mcarlise
-      group: mcarlise
-    - name: another_user
-      group: another_group
-
-system_groups:
-    - name: mcarlise
-    - name: another_group
+    - name: firstuser
+      group: firstgroup
+      state: present
+      fullname: First User
+      email: fuser@fakeaddr
+      comment: First Group
+    - name: seconduser
+      group: secondgroup
+      state: present
+      fullname: Second User
+      email: suser@fakeaddr
+      comment: Second Group

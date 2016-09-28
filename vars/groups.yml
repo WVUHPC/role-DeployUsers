@@ -1,4 +1,7 @@
 ---
 # vars file for adduser
-groups:
-    - name: mcarlise
+system_groups:
+    - name: firstgroup
+      state: present
+    - name: secondgroup
+      state: present

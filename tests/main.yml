@@ -4,7 +4,11 @@
   - adduser
 
   tasks:
-  - name: Test that user mcarlise exist on docker host
-    command: getent passwd mcarlise
+  - name: Test that firstuser exist on docker host
+    command: getent passwd firstuser
+    register: test_result
+    failed_when: "test_result.rc != 0"
+  - name: Test that seconduser exist on docker host
+    command: getent passwd seconduser
     register: test_result
     failed_when: "test_result.rc != 0"
