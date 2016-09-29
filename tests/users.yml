@@ -2,13 +2,18 @@
 # vars file for adduser
 system_users:
     - name: firstuser
-      group: firstgroup
+      groups: 
+        - firstgroup
+        - secondgroup
+        - spruce-users2
       state: present
       fullname: First User
       email: fuser@fakeaddr
       comment: First Group
     - name: seconduser
-      group: secondgroup
+      groups: 
+        - secondgroup
+        - gofirst-users
       state: present
       fullname: Second User
       email: suser@fakeaddr

@@ -5,3 +5,7 @@ system_groups:
       state: present
     - name: secondgroup
       state: present
+    - name: spruce-users2
+      state: present
+    - name: gofirst-users
+      state: present

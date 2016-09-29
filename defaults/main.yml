@@ -1,4 +1,0 @@
----
-# defaults file for adduser
-group_database: "groups.yml"
-user_database: "users.yml"

@@ -1,0 +1,16 @@
+---
+- name: Make Mountaineer Scratch Directories
+  file:
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.groups[0] }}"
+    path: "/scratch/{{ item.name }}"
+  with_items: " {{ system_users }}"
+  when: "'mountaineer-users3' in item.groups"
+
+- name: Make Mountaineer Home Directories
+  command: mkhomedir_helper {{ item.name }}
+  args:
+    creates: "/users/{{ item.name }}/.bashrc"
+  with_items: "{{ system_users }}"
+  when: "'mountaineer-users3' in item.groups"

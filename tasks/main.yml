@@ -1,11 +1,4 @@
 ---
-# tasks file for adduser
-- name: Load user variables
-  include_vars: "{{ user_database }}"
-
-- name: Load group variables
-  include_vars: "{{ group_database }}"
-
 - name: Update group database
   group:
     name: "{{ item.name }}"
@@ -15,10 +8,14 @@
 - name: Update HPC user database
   user: 
     name: "{{ item.name }}"
-    group: "{{ item.group }}"
+    groups: "{{ item.groups |join(',')}}"
     append: yes 
     home: "/users/{{ item.name }}"
     createhome: no
     comment: "{{item.fullname}} ({{item.email}}) -- {{item.comment}}"
     state: "{{ item.state }}"
   with_items: "{{ system_users }}"
+
+- include: gpfs.yml
+- include: gofirst.yml
+- include: mountaineer.yml

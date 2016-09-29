@@ -1,0 +1,26 @@
+---
+- name: Create shared Home Directory
+  user:
+    name: "{{ item.name }}"
+    createhome: yes
+  with_items: "{{ system_users }}"
+  when: "'spruce-users2' or 'gofirst-users' in item.groups"
+
+- name: Set Home Directory Permissions to 0700
+  file:
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.groups[0] }}"
+    path: "/users/{{ item.name }}"
+    mode: 0700
+  with_items: "{{ system_users }}"
+  when: "'spruce-users2' or 'gofirst-users' in item.groups"
+
+- name: Make SCRATCH directory
+  file:
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.groups[0] }}"
+    path: "/scratch/{{ item.name }}"
+  with_items: "{{ system_users }}"
+  when: "'spruce-users2' or 'gofirst-users' in item.groups"

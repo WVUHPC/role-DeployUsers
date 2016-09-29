@@ -1,5 +1,9 @@
 ---
 - hosts: docker-hosts
+  vars_files:
+    - groups.yml
+    - users.yml
+
   roles:
   - adduser
 
