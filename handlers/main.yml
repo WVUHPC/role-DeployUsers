@@ -2,3 +2,6 @@
 # handlers file for adduser
 - name: compile nis
   command: make -C /var/yp
+
+- name: new aliases
+  command: newaliases

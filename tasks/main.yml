@@ -16,6 +16,14 @@
     state: "{{ item.state }}"
   with_items: "{{ system_users }}"
 
+- name: Update email aliases
+  template:
+    src: aliases.j2
+    dest: /etc/aliases
+    owner: root
+    group: root
+    mode: 0644
+
 - include: gpfs.yml
 - include: gofirst.yml
 - include: mountaineer.yml

@@ -6,6 +6,8 @@ system_users:
         - firstgroup
         - secondgroup
         - spruce-users2
+      aliases:
+        - spruce-users
       state: present
       fullname: First User
       email: fuser@fakeaddr
@@ -13,6 +15,8 @@ system_users:
     - name: seconduser
       groups: 
         - secondgroup
+        - gofirst-users
+      aliases: 
         - gofirst-users
       state: present
       fullname: Second User
