@@ -1,0 +1,11 @@
+---
+# vars file for adduser
+system_aliases:
+    - name: noemail
+      address: /dev/null
+    - name: nomail
+      address: /dev/null
+    - name: noreply
+      address: /dev/null
+    - name: webmaster
+      address: hpc-admin

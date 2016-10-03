@@ -73,7 +73,6 @@ ftpadmin:	ftp
 ftp-adm:	ftp
 ftp-admin:	ftp
 www:		webmaster
-webmaster:	hpc-admin
 noc:		root
 security:	root
 hostmaster:	root
@@ -87,47 +86,19 @@ support:	postmaster
 decode:		root
 
 #WVU HPC mail aliases
-#alerts:		nathan.gregg@mail.wvu.edu,don.mclaughlin@mail.wvu.edu,nathan@greggweb.com
-#alerts:		nathan.gregg@mail.wvu.edu,don.mclaughlin@mail.wvu.edu
-alerts:		nathan.gregg@mail.wvu.edu,mcarlise@mail.wvu.edu
-info-alert:	nathan.gregg@mail.wvu.edu,mcarlise@mail.wvu.edu
-#backups:	nathan.gregg@mail.wvu.edu
-backups:	info-alert
-helpdesk:	|/var/www/virtualhosts/helpdesk.hpc.wvu.edu/api/pipe.php
+{% for alias in system_aliases %}
+{{ alias.name }}:	{{ alias.address }}
+{% endfor %}
 
 #WVU HPC Member Addresses
 {% for user in system_users %}
 {{ user.name }}:	{{ user.email }}
 {% endfor %}
 
-
-# Dev Null addresses
-noemail:	/dev/null
-nomail:		/dev/null
-noreply:	/dev/null
-
 #WVU HPC Mailing Lists
-#
-old-list: aadumitr@mix.wvu.edu,vagarwa1@mix.wvu.edu,vyacheslav.akkerman@mail.wvu.edu,vyacheslav.akkerman@mail.wvu.edu,brian.anderson@mail.wvu.edu,bedemirgok@mix.wvu.edu,ougartea@mix.wvu.edu,robyn.ayscue@gmail.com,fbeamer@mix.wvu.edu,abommaga@mix.wvu.edu,kolin.brown@mail.wvu.edu,bob.burton@mail.wvu.edu,fritz.campo@gmail.com,mcarlise@mix.wvu.edu,ismail.celik@mail.wvu.edu,bojan.cukic@mail.wvu.edu,mdarrah@math.wvu.edu,stephen.difazio@mail.wvu.edu,gianfranco.doretto@mail.wvu.edu,yuhua.duan@netl.doe.gov,sescobar@mix.wvu.edu,zachetie@gmail.com,luke.evans@mail.wvu.edu,mfanaei@mix.wvu.edu,ef@math.wvu.edu,mgaddipa@mix.wvu.edu,ngarapat@mix.wvu.edu,rgondle@mix.wvu.edu,nathan.gregg@mail.wvu.edu,wade.huebsch@mail.wvu.edu,aibrahee@mix.wvu.edu,nielinfante@gmail.com,charles.jaffe@mail.wvu.edu,mkannan@mix.wvu.edu,rknost@mix.wvu.edu,james.lewis@mail.wvu.edu,xingbo.liu@mail.wvu.edu,dllong@hsc.wvu.edu,duncan.lorimer@mail.wvu.edu,alfred.lynam@mail.wvu.edu,hao.ma@mail.wvu.edu,pmartone@hsc.wvu.edu,dem@wvu.edu,maura.mclaughlin@mail.wvu.edu,sean.mcwilliams@mail.wvu.edu,david.mebane@mail.wvu.edu,tim.menzies@mail.wvu.edu,tom.moran@mail.wvu.edu,jrivasmu@mix.wvu.edu,lnallana@mix.wvu.edu,kpanday@mix.wvu.edu,ray.raylman@hsc.wvu.edu,brestrep@mix.wvu.edu,brober12@mix.wvu.edu,aldo.romero@mail.wvu.edu,earl.scime@mail.wvu.edu,lisa.sharpe@mail.wvu.edu,mark.six@mail.wvu.edu,wlm_efn@yahoo.com,jacqueline.speir@mail.wvu.edu,gspirou@hsc.wvu.edu,mvalenti@wvu.edu,svelaga@mix.wvu.edu,brian.woerner@mail.wvu.edu
-
 {% for maillist in system_users|groupby('aliases') %}
-{{ maillist.grouper }}: {{ maillist.list|join(',', attribute='name') }}
+
+{{ maillist.grouper[0] }}: {{ maillist.list|join(',', attribute='name') }}
+
 {% endfor %}
 
-
-hpc-users: old-list,hpc-admin,spruce-users,spruce-owners,hpc-committee,jucao,matinsley,gupanapitiya,darubenstein,afnoore,dayadav,nakohli,awelsh,vguda,krmedam,mlokant1,jack.smith@wvresearch.org,jbecca,mregier,yuli1,TKWafle@mail.wvu.edu,cfrum,vgpunnamaraju,zm0004,thdoppala
-
-#hpc-team: ngregg,mcarlise,dem
-hpc-team: negregg,mcarlise
-
-#hpc-admin: ngregg,dem
-hpc-admin: negregg,mcarlise
-hpc-admins: hpc-admin
-
-#Pager duty
-#pagerduty: datacenter@westvirginia.pagerduty.com
-pagerduty: hpc@westvirginia.pagerduty.com
-
-
-# Person who should get root's mail
-#root:		marc
